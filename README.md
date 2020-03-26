@@ -1,6 +1,6 @@
 # Phyton P2P File Transfering
  Phytpn P2P File Transfering Project
-from Ýsmail Doðukan Turgut, Bahcesehir University, Istanbul/Turkey
+from Ismail Dogukan Turgut, Bahcesehir University, Istanbul/Turkey
 
 ***EN***
 This Program allows you to share an any file to devices which at the same internet network(LAN System)
@@ -18,7 +18,7 @@ Step4A: You must enter the file ize with KB.The Host device (Connected Device) t
 
 ----------------------------------------
 
-Step2B: The Program will find the devices with their names and ips for the choose your sender. You must wait to the connect any device to your server. When it connected completely the program will say somebody just entered the server (with their ip and name) and you will be ready to the send file.
+Step2B: The Program will not find the devices with their names and ips for the choose your sender. You must wait to the connect any device to your server. When it connected completely the program will say somebody just entered the server (with their ip and name) and you will be ready to the send file.
 
 Step3B: You must write the file path from the file's first parent folder.For example file at folder that named 'images' and 'images' folder at 'venv' folder so you dont need write 'venv' folder name again 'images/IMAGENAME.jpg' will be enough.(Note: Program must be at venv folder)
 
@@ -30,28 +30,28 @@ Thank You
 
 
 ***TR***
-Bu program size ayný að üstündeki cihazlara dosya göndermenizi saðlar(LAN System)
+Bu program size ayni ag ustundeki cihazlara dosya gondermenizi saglar(LAN System)
 
-Adým1: Dosya almak için 1, dosya göndermek için ise 2 yazýn.
+Adim1: Dosya almak icin 1, dosya gondermek icin ise 2 yazin.
 
-1'i seçenler için A, 2'yi seçenler için B
+1'i secenler icin A, 2'yi secenler icin B
 -----------------------------------------
 
-Adým2A: Program alýcýnýz için ip ayný aðdaki cihazlarý ip adresi ve bilgisayar ismine göre bulur. Arama iþlemi tamamlandýktan sonra cihazýn ADINI yazýn. Eðer dosya transferi yapmak istediðiniz dosya ana cihazdan ise bilgisayar adýnýnýn sonuna '.home' yazmayýn. Cihaza baðlanmak için baðlý olacaðýnýz cihazýn açýk ve hazýr konumda olmasý gerekmektedir.
+Adim2A: Program aliciniz icin ip ayni agdaki cihazlari ip adresi ve bilgisayar ismine gore bulur. Arama islemi tamamlandiktan sonra cihazin ADINI yazin. Eger dosya transferi yapmak istediginiz dosya ana cihazdan ise bilgisayar adininin sonuna '.home' yazmayin. Cihaza baglanmak icin bagli olacaginiz cihazin acik ve hazir konumda olmasi gerekmektedir.
 
-Adým3A: Almak istediðiniz dosyanýn adýný yazýn.
+Adim3A: Almak istediginiz dosyanin adini yazin.
 
-Adým4A: Transfer yapacaðýnýz cihazýn size vereceði dosya boyutunu girin.
+Adim4A: Transfer yapacaginiz cihazin size verecegi dosya boyutunu girin.
 
 -----------------------------------------
 
-Adým2B: Program alýcýnýz için ip ayný aðdaki cihazlarý ip adresi ve bilgisayar ismine göre bulur. Bir cihazýn sunucunuza baðlanmasý için bekleyin. Baðlantý kurulduðunda program size baðlý cihazýn adýný ve ip adresini verecektir.
+Adim2B: Program aliciniz icin ayni agdaki cihazlari ip adresi ve bilgisayar ismine gore bulmaz. Bir cihazin sunucunuza baglanmasi icin bekler. Baglanti kuruldugunda program size bagli cihazin adini ve ip adresini verecektir.
 
-Step3B: Dosyanýn yolunu dosyanýn bulunduðu klasörden itibaren yazýn.Örnek olarak 'venv' adlý bir klasörün içinden 'images' adlý bir klasördeki bir jpg dosyasýný transfer etmek istiyorsanýz örnekteki yazým yeterli oalcaktýr. : 'images/IMAGENAME.jpg' (Not:Program venv klasöründe olmalý)
+Step3B: Dosyanin yolunu dosyanin bulundugu klasorden itibaren yazin.ornek olarak 'venv' adli bir klasorun icinden 'images' adli bir klasordeki bir jpg dosyasini transfer etmek istiyorsaniz ornekteki yazim yeterli oalcaktir. : 'images/IMAGENAME.jpg' (Not:Program venv klasorunde olmali)
 
-Step4B: Programýn vereceði dosya boyutunu alýcý cihaza söyleyerek yükleme iþini tamamlayabilirsiniz.
+Step4B: Programin verecegi dosya boyutunu alici cihaza soyleyerek yukleme isini tamamlayabilirsiniz.
 
-Teþekkürler.
+Tesekkurler.
 
 
 
