@@ -31,18 +31,28 @@ def Sender():
     print("Cihaz bağlantısı için bekleniyor...")
     try:
         conn, addr = s.accept()
-        #pcName = socket.gethostbyname(addr)
-        print(addr, socket.gethostname(), "Server'a giriş yaptı.")
+        for ip in range(1, 256):
+            addr = network + str(ip)
+            if is_up(addr):
+                fqdn = socket.getfqdn(addr)
+        print(addr, fqdn, "- Server'a giriş yaptı.")
     except:
         print("Cihaz Bağlanamadı")
+        s.close()
+        conn.close()
         Sender()
 
-    filename = input(str("Gönderilecek Olan dosyanın yolunu yazın : "))
-    file = open(filename, 'rb')
-    file_path = filename
-    file_stats = os.stat(file_path)
-    size = str(file_stats.st_size)
-    print("'" + size + "'KB")
+    try:
+        filename = input(str("Gönderilecek Olan dosyanın yolunu yazın : "))
+        file = open(filename, 'rb')
+        file_path = filename
+        file_stats = os.stat(file_path)
+        size = str(file_stats.st_size)
+        print("'" + size + "'KB")
+    except:
+        s.close()
+        conn.close()
+        Sender()
 
     # P2P_Uploader/Server
     try:
@@ -52,6 +62,8 @@ def Sender():
     except:
         print("Beklenmedik bir hata oluştu.")
         print("Dosya Gönderilemedi")
+        s.close()
+        conn.close()
         Sender()
 
     try:
@@ -62,7 +74,7 @@ def Sender():
         print("SERVER KAPANIRKEN BEKLENMEDİK BİR HATA OLUŞTU LÜTFEN PROGRAMI KAPATIP YENİDEN AÇIN YA DA PORT ADRESİNİ DEĞİŞTİRİN")
 
     try:
-        gonderildilogla(socket.gethostname(), host, filename, size)
+        gonderildilogla(fqdn, host, filename, size)
     except:
         print("Log Dosyası Oluşturulamadı.")
         main()
@@ -70,9 +82,9 @@ def Sender():
 def Receiver(hostAdi):
     s = socket.socket()
     host = hostAdi
-
     port = 8080
     size = 1
+
     try:
         s.connect((host, port))
         print("Giriş Sağlandı.")
@@ -93,6 +105,8 @@ def Receiver(hostAdi):
         print("Dosya Başarıyla Alındı.")
     except:
         print("Beklenmedik bir hata oluştu.")
+        s.close()
+        file.close()
         main()
     try:
         file.close()
@@ -101,9 +115,15 @@ def Receiver(hostAdi):
     except:
         print("SERVER KAPANIRKEN BEKLENMEDİK BİR HATA OLUŞTU LÜTFEN PROGRAMI KAPATIP YENİDEN AÇIN YA DA PORT ADRESİNİ DEĞİŞTİRİN")
     try:
-        alındılogla(socket.gethostname(), host, filename, size)
+        for ip in range(1, 256):
+            addr = network + str(ip)
+            if is_up(addr):
+                fqdn = socket.getfqdn(addr)
+        alındılogla(fqdn, host, filename, size)
     except:
         print("Log Dosyası Oluşturulamadı.")
+        s.close()
+        file.close()
         main()
 
 def is_up(addr):
@@ -113,7 +133,7 @@ def is_up(addr):
             return 1
 
 def findUsers():
-    print("LAN 'daki windows cihazları aranıyor. Lütfen bekleyin.")
+    print("LAN'daki windows cihazları aranıyor. Lütfen bekleyin.")
     print(' ')
     for ip in range(1, 256):
         addr = network + str(ip)
@@ -127,34 +147,38 @@ def hostadiAl():
     hostAdi = input(str("Lütfen dosya alacağınız cihazın adını yazın : "))
     Receiver(hostAdi)
 
-def alındılogla(guest, host, filename, size):
+def alındılogla(fqdn, host, filename, size):
     try:
-        LOG_FILENAME = datetime.now().strftime('D:/log/logfile_%H_%M_%S_%d_%m_%Y.log')
+        LOG_FILENAME = datetime.now().strftime('log/logfile_%H_%M_%S_%d_%m_%Y.log')
         for handler in logging.root.handlers[:]:
             logging.root.removeHandler(handler)
         logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
         logging.info("Dosya Alındı")
-        logging.info("Gönderici Adı:{a}".format(a=host))
-        logging.info("Alıcı Adı:{a}".format(a=guest))
-        logging.info("Dosya Adı:{a}".format(a=filename))
-        logging.info("Dosya Boyutu:{a}".format(a=size))
+        logging.info("Tarih-Saat: {a}".format(a=datetime.now()))
+        logging.info("Gönderici Adı: {a}".format(a=host))
+        logging.info("Alıcı Adı: {a}".format(a=fqdn))
+        logging.info("Dosya Adı: {a}".format(a=filename))
+        logging.info("Dosya Boyutu: {a}".format(a=size))
         main()
     except:
         print("Log Dosyası Oluşturulamadı.")
+        main()
 
-def gonderildilogla(guest, host, filename, size):
+def gonderildilogla(fqdn, host, filename, size):
     try:
-        LOG_FILENAME = datetime.now().strftime('D:/log/logfile_%H_%M_%S_%d_%m_%Y.log')
+        LOG_FILENAME = datetime.now().strftime('log/logfile_%H_%M_%S_%d_%m_%Y.log')
         for handler in logging.root.handlers[:]:
             logging.root.removeHandler(handler)
         logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
         logging.info("Dosya Gönderildi")
+        logging.info("Tarih-Saat: {a}".format(a=datetime.now()))
         logging.info("Gönderici Adı:{a}".format(a=host))
-        logging.info("Alıcı Adı:{a}".format(a=guest))
+        logging.info("Alıcı Adı:{a}".format(a=fqdn))
         logging.info("Dosya Adı:{a}".format(a=filename))
         logging.info("Dosya Boyutu:{a}".format(a=size))
         main()
     except:
         print("Log Dosyası Oluşturulamadı.")
+        main()
 
 main()
